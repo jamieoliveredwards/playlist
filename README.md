@@ -14,7 +14,7 @@ To start I looked at the structure of the API response from *https://portal.orga
 
 1. A user should be presented with a list of playlists grouped by collection
 2. Clicking a playlist should present the user with the playlist detail, including an external link
-3. A user should be able to mark a playlist as a favorite
+3. A user should be able to mark a playlist as a favourite
 
 ## Problems
 The API returns a list of collections with the playlists as a nested array, if multiple collections contained the same playlist any interaction with a playlist in one container would not be reflected across the other instances of that playlist (in one or more other collections).
@@ -33,7 +33,7 @@ Starting with a basic design for a mobile viewport and sizing up to a desktop wi
 ## Technologies
 * Angular 9
 * Angular Material
-  * To provide strutured theming throughout the application
+  * To provide structured theming throughout the application
 
 ## Testing
 A simple unit test is implemented for the playlist service. Test.ts has been amended to only target this directory for demonstration purposes.
@@ -43,5 +43,5 @@ Further testing coverage is to be implemented.
 ## Potential Improvements
 * NGRX for state management (should functionality increase)
 * Animations, specifically animating the entry of the child router-outlet in the playlist component to slide in from below.
-* Saving of user favorite data
+* Saving of user favourite data
 * Improved test coverage
