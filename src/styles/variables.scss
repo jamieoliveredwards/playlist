@@ -1,0 +1,10 @@
+@import "~@angular/material/theming";
+
+// Angular Material Theme Variables
+$primary: mat-palette($mat-indigo);
+$accent: mat-palette($mat-pink, A200, A100, A400);
+$warn: mat-palette($mat-red);
+
+// Application variables
+
+$navbarHeight: 60px;

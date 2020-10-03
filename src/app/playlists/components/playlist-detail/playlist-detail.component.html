@@ -1,0 +1,11 @@
+<mat-card *ngIf="playlist$ | async as playlist" class="mat-elevation-z8">
+    <mat-card-title>{{ playlist.name }}</mat-card-title>
+    <mat-card-subtitle>{{ playlist.curator_name }}</mat-card-subtitle>
+    <img mat-card-image [src]="playlist.artwork" class="playlist-card-image">
+    <mat-card-actions>
+        <a mat-button color="secondary" [href]="playlist.url" target="_blank">
+            Go to {{ playlist.name }}
+        </a>
+        <a mat-button color="warn" [routerLink]="['../']">Close</a>
+    </mat-card-actions>
+</mat-card>

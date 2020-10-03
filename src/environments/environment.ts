@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  playlistApi: 'https://portal.organicfruitapps.com/programming-guides/v2/us_en-us/featured-playlists.json'
 };
 
 /*

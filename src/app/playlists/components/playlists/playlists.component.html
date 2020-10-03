@@ -1,0 +1,23 @@
+<div *ngIf="playlistCollections$ | async as collections" class="playlist-container">
+    <div class="playlist-list">
+
+        <mat-list *ngFor="let collection of collections">
+            <div mat-subheader>{{ collection.name }}</div>
+            <mat-list-item *ngFor="let playlist of collection.content" [routerLink]="[playlist.id]"
+                routerLinkActive="active">
+                <img matListAvatar [src]="playlist.artwork" />
+                <div mat-line>{{ playlist.name }}</div>
+                <span class="flex-spacer"></span>
+                <button mat-icon-button (click)="toggleFavorite(playlist.id)">
+                    <mat-icon [color]="playlist.favorite ? 'accent' : null">
+                        {{ playlist.favorite ? 'star' : 'star_outline' }}
+                    </mat-icon>
+                </button>
+            </mat-list-item>
+        </mat-list>
+
+    </div>
+    <div class="playlist-detail">
+        <router-outlet *ngIf="route.children.length > 0"></router-outlet>
+    </div>
+</div>

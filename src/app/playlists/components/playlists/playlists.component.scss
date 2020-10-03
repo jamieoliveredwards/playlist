@@ -1,0 +1,36 @@
+@import "~@angular/material/theming";
+@import "../../../../styles/variables.scss";
+
+.playlist-container {
+    .playlist-list {
+        position: fixed;
+        top: $navbarHeight;
+        bottom: 0;
+        max-width: 420px;
+        width: 100%;
+        overflow: scroll;
+    }
+
+    .playlist-detail {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
+    }
+}
+
+mat-list-item {
+    cursor: pointer;
+    &:hover {
+        background-color: mat-color($primary, 100);
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &.active {
+        font-weight: bold;
+        background-color: mat-color($primary, 50);
+    }
+}

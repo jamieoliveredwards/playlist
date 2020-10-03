@@ -1,27 +1,47 @@
 # PlaylistApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
+## To Start Application
 
-## Development server
+### Prerequisites
+* node.js & npm - https://nodejs.org/
+* Angular CLI - ```npm i -g @angular/cli```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### To Start Development Server
+```npm start``` from project root
 
-## Code scaffolding
+## Overall Approach
+To start I looked at the structure of the API response from *https://portal.organicfruitapps.com/programming-guides/v2/us_en-us/featured-playlists.json*. Determining that although one single playlist is return, the structure indicates any number of collections is not limited. Using this I produced the following requirements:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. A user should be presented with a list of playlists grouped by collection
+2. Clicking a playlist should present the user with the playlist detail, including an external link
+3. A user should be able to mark a playlist as a favorite
 
-## Build
+## Problems
+The API returns a list of collections with the playlists as a nested array, if multiple collections contained the same playlist any interaction with a playlist in one container would not be reflected across the other instances of that playlist (in one or more other collections).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+The data held against each playlist and collection is very basic, without additional information the visual design of the application is limited.
 
-## Running unit tests
+## Solutions
+Using a redux-like pattern in the PlaylistService playlists are separated from their collections and a single instance of each playlist is stored in the service. As the service is a singleton instance (provided in root) any components or services throughout the application will have access to the same single source of truth.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To allow grouping by collection the playlist items are mapped back into the collection objects, however now each playlist will update once the single instance of the playlist is updated. The functionality of requirement 3 demonstrates the application of this.
 
-## Running end-to-end tests
+With only a single type of entity being handled in the application (playlists), the approach of a singleton service is sufficient. If further entities were to be handled a package such as Redux or NGRX would be more suitable.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Starting with a basic design for a mobile viewport and sizing up to a desktop window while applying changes on CSS media queries I came to the implemented design solution. If further information was available for each playlist a template to the right of the list on wider displays would be more visually appealing and provide a better user experience.
 
-## Further help
+## Technologies
+* Angular 9
+* Angular Material
+  * To provide strutured theming throughout the application
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Testing
+A simple unit test is implemented for the playlist service. Test.ts has been amended to only target this directory for demonstration purposes.
+
+Further testing coverage is to be implemented.
+
+## Potential Improvements
+* NGRX for state management (should functionality increase)
+* Animations, specifically animating the entry of the child router-outlet in the playlist component to slide in from below.
+* Saving of user favorite data
+* Improved test coverage

@@ -1,0 +1,18 @@
+@import "~@angular/material/theming";
+@import "../../../../styles/variables.scss";
+
+.nav-bar {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: $navbarHeight;
+    background-color: mat-color($primary, 400);
+    padding: 0 1em;
+    z-index: 1;
+
+    & > * {
+        margin: auto 0;
+    }
+}
